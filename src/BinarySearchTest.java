@@ -10,7 +10,7 @@ class OrdArray {
     public int size() {
         return nElems;
     }
-    
+
     public int find(int searchKey) {
         int lowerBound = 0;
         int upperBound = nElems - 1;
@@ -31,14 +31,15 @@ class OrdArray {
             }
         }
     }
-    
+
     public void insert(int value) {
         int j;
-        for(j = 0; j < nElems; j++)
-            if(a[j] > value)
+
+        for (j = 0; j < nElems; j++)
+            if (a[j] > value)
                 break;
-        for(int k = nElems; k > j; k--)
-            a[k] = a[k-1];
+        for (int k = nElems; k > j; k--)
+            a[k] = a[k - 1];
         a[j] = value;
         nElems++;
     }
