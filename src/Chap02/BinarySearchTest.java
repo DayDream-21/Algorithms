@@ -1,3 +1,5 @@
+package Chap02;
+
 class OrdArray {
     private int[] a;
     private int nElems;

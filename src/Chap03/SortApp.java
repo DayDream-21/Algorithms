@@ -1,3 +1,5 @@
+package Chap03;
+
 class Person {
     private String lastName;
     private String firstName;

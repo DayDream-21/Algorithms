@@ -1,3 +1,5 @@
+package Chap04;
+
 class Queue {
     private int maxSize;
     private int[] queArray;

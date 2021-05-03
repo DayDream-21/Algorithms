@@ -1,3 +1,5 @@
+package Chap02;
+
 class HighArray {
     private int[] a; // Ссылка на массив a
     private int nElems; // Количество элементов в массиве

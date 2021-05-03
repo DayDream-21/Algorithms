@@ -1,3 +1,5 @@
+package Chap04;
+
 class Stack {
     private int maxSize;
     private int[] stackArray;
