@@ -1,13 +1,18 @@
 package Chap10;
 
-public class DataItem {
+class DataItem {
     public long dData; // Один объект данных
 
-    public DataItem(long dData) { // Конструктор
-        this.dData = dData;
+    //--------------------------------------------------------------
+    public DataItem(long dd) // Конструктор
+    {
+        dData = dd;
     }
 
-    public void displayItem() {
-        System.out.println("/" + dData);
+    //--------------------------------------------------------------
+    public void displayItem() // Вывод элемента в формате "/27"
+    {
+        System.out.print("/" + dData);
     }
+//--------------------------------------------------------------
 }
