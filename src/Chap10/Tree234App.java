@@ -38,20 +38,17 @@ class Tree234App {
         }
     }
 
-    //--------------------------------------------------------------
     public static String getString() throws IOException {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
         return br.readLine();
     }
 
-    //--------------------------------------------------------------
     public static char getChar() throws IOException {
         String s = getString();
         return s.charAt(0);
     }
 
-    //-------------------------------------------------------------
     public static int getInt() throws IOException {
         String s = getString();
         return Integer.parseInt(s);
