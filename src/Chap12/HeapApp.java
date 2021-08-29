@@ -59,8 +59,7 @@ class HeapApp {
     }
 
     public static String getString() throws IOException {
-        InputStreamReader isr = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(isr);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         return br.readLine();
     }
 
