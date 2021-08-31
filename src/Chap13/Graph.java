@@ -82,7 +82,7 @@ public class Graph {
         System.out.println(); // После вывода списка посещений делаем отступ
         // После завершения работы (стек пуст) сбрасываем значение пометок
         for (int i = 0; i < nVerts; i++) {
-            vertexList[i].wasVisited  = false;
+            vertexList[i].wasVisited = false;
         }
     }
 
@@ -112,6 +112,32 @@ public class Graph {
         // После завершения работы (очередь пуста) сбрасываем значение пометок
         for (int i = 0; i < nVerts; i++) {
             vertexList[i].wasVisited = false;
+        }
+    }
+
+    // Построение минимального остовного дерева
+    public void mst() {
+        // Начинаем обход с вершины 0
+        vertexList[0].wasVisited = true; // Пометка о посещении
+        theStack.push(0); // Занесение в стек
+        // Пока не опустеет стек
+        while (!theStack.isEmpty()) {
+            int currentVertex = theStack.peek(); // Извлечение элемента из стека
+            int vertex = getAdjUnvisitedVertex(currentVertex); // Получение следующего соседа
+            if (vertex == -1) { // Если соседей больше нет,
+                theStack.pop(); // извлечь элемент из стека
+            } else { // Если сосед существует
+                vertexList[vertex].wasVisited = true; // Пометка о посещении
+                theStack.push(vertex); // Занесение в стек
+                // Вывод ребра
+                displayVertex(currentVertex); // От currentVertex
+                displayVertex(vertex); // к vertex
+                System.out.print(" ");
+            }
+        }
+
+        for (int j = 0; j < nVerts; j++) {
+            vertexList[j].wasVisited = false;
         }
     }
 }
