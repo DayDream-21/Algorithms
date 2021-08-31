@@ -16,6 +16,7 @@ public class GraphTest {
         graph.addEdge(3, 4); // DE
 
         System.out.println("Visits: ");
-        graph.dfs(); // Выполняем обход
+        graph.dfs(); // Выполняем обход в глубину
+        graph.bfs(); // Выполняем обход в глубину
     }
 }

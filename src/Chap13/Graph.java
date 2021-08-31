@@ -1,5 +1,7 @@
 package Chap13;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class Graph {
@@ -7,7 +9,9 @@ public class Graph {
     private Vertex[] vertexList; // Массив вершин
     private int[][] adjMat; // Матрица смежности
     private int nVerts; // Текущее количество вершин
+
     Stack<Integer> theStack = new Stack<>();
+    Queue<Integer> theQueue = new LinkedList<>();
 
     public Graph() { // Конструктор
         vertexList = new Vertex[MAX_VERTS];
@@ -35,6 +39,10 @@ public class Graph {
         System.out.print(vertexList[vertex].label);
     }
 
+    public void printArrow() {
+        System.out.print(" -> ");
+    }
+
     // Проверяем есть ли у вершины смежная вершина и если есть, то получает ее номер
     public int getAdjUnvisitedVertex(int vertex) {
         for (int i = 0; i < nVerts; i++) {
@@ -54,6 +62,7 @@ public class Graph {
         vertexList[0].wasVisited = true; // Пометка о посещении
         displayVertex(0); // Вывод в консоль
         theStack.push(0); // Занесение в стек
+        int count = 0; // Для вывода введем счетчик
         // Пока не опустеет стек
         while (!theStack.isEmpty()) {
             // Получаем не посещенную вершину, смежную к текущей
@@ -61,14 +70,48 @@ public class Graph {
             if (vertex == -1) { // Если такой вершины нет,
                 theStack.pop(); // извлекаем элемент из стека
             } else { // Если найдена
+                count++; // Увеличиваем счетчик на 1
                 vertexList[vertex].wasVisited = true; // Пометка о посещении
+                if (count != nVerts) { // Пока счетчик не дошел до последнего элемента
+                    printArrow(); // рисуем стрелку
+                }
                 displayVertex(vertex); // Вывод в консоль
                 theStack.push(vertex); // Занесение в стек
             }
         }
+        System.out.println(); // После вывода списка посещений делаем отступ
         // После завершения работы (стек пуст) сбрасываем значение пометок
         for (int i = 0; i < nVerts; i++) {
             vertexList[i].wasVisited  = false;
+        }
+    }
+
+    // Обход в ширину
+    public void bfs() {
+        // Начинаем обход с вершины 0
+        vertexList[0].wasVisited = true; // Пометка о посещении
+        displayVertex(0); // Вывод в консоль
+        theQueue.add(0); // Занесение в очередь
+        int vertex2;
+        int count = 0; // Для вывода введем счетчик
+
+        while (!theQueue.isEmpty()) { // Пока очередь не опустеет
+            int vertex1 = theQueue.remove(); // Извлечение вершины в начале очереди
+            // Пока остаются не посещенные соседи получаем данные вершины
+            while ((vertex2 = getAdjUnvisitedVertex(vertex1)) != -1) {
+                count++; // Увеличиваем счетчик на 1
+                vertexList[vertex2].wasVisited = true; // Пометка о посещении
+                if (count != nVerts) { // Пока счетчик не дошел до последнего элемента
+                    printArrow(); // рисуем стрелку
+                }
+                displayVertex(vertex2); // Вывод в консоль
+                theQueue.add(vertex2); // Занесение в очередь
+            }
+        }
+        System.out.println(); // После вывода списка посещений делаем отступ
+        // После завершения работы (очередь пуста) сбрасываем значение пометок
+        for (int i = 0; i < nVerts; i++) {
+            vertexList[i].wasVisited = false;
         }
     }
 }
